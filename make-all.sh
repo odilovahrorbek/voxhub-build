@@ -54,10 +54,14 @@ jobs:
           npm install --legacy-peer-deps
           npm run build
           npx cap sync ios
+      - name: Install CocoaPods
+        run: |
+          cd ios/App
+          pod install
       - name: Compile Unsigned iOS App
         run: |
           cd ios/App
-          xcodebuild -project App.xcodeproj \
+          xcodebuild -workspace App.xcworkspace \
             -scheme App \
             -configuration Release \
             -sdk iphoneos \
@@ -95,13 +99,16 @@ GITIGNORE
 git config user.email "dev@local.app" || true
 git config user.name "Developer" || true
 git add .
-git commit -m "Build IPA for $APP_NAME" || true
+git commit -m "Fix workspace build for $APP_NAME" || true
 
 if ! git remote | grep -q origin; then
   gh repo create "${CLEAN_NAME}-build" --public --source=. --remote=origin --push
 else
   git push -u origin main --force
 fi
+
+echo "⏳ GitHub Actions ishga tushishi kutilmoqda (7 soniya)..."
+sleep 7
 
 RUN_ID=$(gh run list --workflow=ios-build.yml --limit 1 --json databaseId --jq '.[0].databaseId')
 gh run watch "$RUN_ID"
