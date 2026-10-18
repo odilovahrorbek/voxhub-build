@@ -8,7 +8,7 @@ CLEAN_NAME=$(echo "$APP_NAME" | tr -cd '[:alnum:]' | tr '[:upper:]' '[:lower:]')
 echo "=========================================="
 echo "🤖 1-BOSQICH: [$APP_NAME] uchun APK yig'ilmoqda..."
 echo "=========================================="
-rm -rf android dist node_modules package-lock.json
+rm -rf android dist node_modules
 npm install --legacy-peer-deps
 npm run build
 npx cap add android
@@ -99,7 +99,7 @@ GITIGNORE
 git config user.email "dev@local.app" || true
 git config user.name "Developer" || true
 git add .
-git commit -m "Fix workflow and pods for $APP_NAME" || true
+git commit -m "Fix web build dependencies for $APP_NAME" || true
 
 if ! git remote | grep -q origin; then
   gh repo create "${CLEAN_NAME}-build" --public --source=. --remote=origin --push
