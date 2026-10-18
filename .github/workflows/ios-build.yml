@@ -1,0 +1,40 @@
+name: Build iOS IPA
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install & Build Web
+        run: |
+          npm install --legacy-peer-deps
+          npm run build
+          npx cap sync ios
+      - name: Compile Unsigned iOS App
+        run: |
+          cd ios/App
+          xcodebuild -project App.xcodeproj \
+            -scheme App \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            clean build
+      - name: Create IPA Archive
+        run: |
+          mkdir -p Payload
+          cp -r ios/App/build/Build/Products/Release-iphoneos/App.app Payload/
+          zip -qq -r app.ipa Payload
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: app.ipa

@@ -1,0 +1,6 @@
+{
+  "name": "VOX HUB",
+  "description": "Cyberpunk multi-platform media aggregator for YouTube, Twitch, TikTok, and Instagram with unified OAuth 2.0 PKCE authentication and trilingual (UZ/RU/EN) interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

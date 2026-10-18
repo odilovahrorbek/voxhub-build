@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-void: #0D001A;
+    --surface-base: #1A0033;
+    --surface-elevated: #26004D;
+    --surface-highlight: #3A007A;
+    --accent-neon-purple: #BF00FF;
+    --accent-light-purple: #E066FF;
+    --accent-cyber-cyan: #00F0FF;
+    --signal-connected: #00FF66;
+    --signal-connected-bright: #39FF14;
+    --text-primary: #FFFFFF;
+    --text-secondary: #E066FF;
+    --text-muted: #B39DDB;
+    --border-dim: #3A007A;
+    --border-active: #00F0FF;
+    --vox-font-scale: 1;
+  }
+
+  html {
+    font-size: calc(16px * var(--vox-font-scale));
+    background-color: #0D001A;
+    color: #F3DAFF;
+    font-family: 'Space Mono', monospace;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-mono-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Subtle non-blocking CRT scanline texture */
+.vox-scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+}
+
+/* Cyber grid background */
+.vox-cyber-grid {
+  background-size: 28px 28px;
+  background-image: 
+    linear-gradient(to right, rgba(191, 0, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+}
+
+/* Hard pixel offset shadows */
+.vox-pixel-shadow {
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.vox-cyan-glow {
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.35), 4px 4px 0px #090012;
+}
+
+.vox-purple-glow {
+  box-shadow: 0 0 16px rgba(191, 0, 255, 0.45), 4px 4px 0px #090012;
+}
+
+/* Custom scrollbar for terminal aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0D001A;
+}
+::-webkit-scrollbar-thumb {
+  background: #3A007A;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #BF00FF;
+}
