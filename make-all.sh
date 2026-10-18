@@ -99,7 +99,7 @@ GITIGNORE
 git config user.email "dev@local.app" || true
 git config user.name "Developer" || true
 git add .
-git commit -m "Fix workspace build for $APP_NAME" || true
+git commit -m "Fix workflow and pods for $APP_NAME" || true
 
 if ! git remote | grep -q origin; then
   gh repo create "${CLEAN_NAME}-build" --public --source=. --remote=origin --push
