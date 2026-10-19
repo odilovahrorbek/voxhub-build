@@ -8,11 +8,11 @@ CLEAN_NAME=$(echo "$APP_NAME" | tr -cd '[:alnum:]' | tr '[:upper:]' '[:lower:]')
 echo "=========================================="
 echo "🤖 1-BOSQICH: [$APP_NAME] uchun APK yig'ilmoqda..."
 echo "=========================================="
-rm -rf android dist node_modules
+rm -rf android dist node_modules package-lock.json
 npm install --legacy-peer-deps
 npm run build
 npx cap add android
-npx cap sync
+npx cap sync android
 echo "sdk.dir=$HOME/Android/Sdk" > android/local.properties
 cd android
 chmod +x gradlew
@@ -29,9 +29,8 @@ if [ ! -d "node_modules/@capacitor/ios" ]; then
   npm install @capacitor/ios --legacy-peer-deps
 fi
 
-if [ ! -d "ios" ]; then
-  npx cap add ios
-fi
+rm -rf ios
+npx cap add ios
 npx cap copy ios
 
 mkdir -p .github/workflows
@@ -48,28 +47,40 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - name: Install & Build Web
+          node-version: 22
+      - name: Prepare Dependencies & Sync
         run: |
+          rm -rf node_modules package-lock.json
           npm install --legacy-peer-deps
-          npm run build
-          npx cap sync ios
+          npx cap copy ios
       - name: Install CocoaPods
         run: |
           cd ios/App
-          pod install
+          if [ -f "Podfile" ]; then pod install; fi
       - name: Compile Unsigned iOS App
         run: |
           cd ios/App
-          xcodebuild -workspace App.xcworkspace \
-            -scheme App \
-            -configuration Release \
-            -sdk iphoneos \
-            -derivedDataPath build \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            clean build
+          if [ -d "App.xcworkspace" ]; then
+            xcodebuild -workspace App.xcworkspace \
+              -scheme App \
+              -configuration Release \
+              -sdk iphoneos \
+              -derivedDataPath build \
+              CODE_SIGN_IDENTITY="" \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGNING_ALLOWED=NO \
+              clean build
+          else
+            xcodebuild -project App.xcodeproj \
+              -scheme App \
+              -configuration Release \
+              -sdk iphoneos \
+              -derivedDataPath build \
+              CODE_SIGN_IDENTITY="" \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGNING_ALLOWED=NO \
+              clean build
+          fi
       - name: Create IPA Archive
         run: |
           mkdir -p Payload
@@ -89,7 +100,6 @@ fi
 
 cat << 'GITIGNORE' > .gitignore
 node_modules/
-dist/
 build/
 android/
 *.apk
@@ -99,7 +109,7 @@ GITIGNORE
 git config user.email "dev@local.app" || true
 git config user.name "Developer" || true
 git add .
-git commit -m "Fix web build dependencies for $APP_NAME" || true
+git commit -m "Build direct IPA for $APP_NAME" || true
 
 if ! git remote | grep -q origin; then
   gh repo create "${CLEAN_NAME}-build" --public --source=. --remote=origin --push

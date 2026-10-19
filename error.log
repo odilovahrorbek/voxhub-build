@@ -1,0 +1,53 @@
+build-ios	Install & Build Web	﻿2026-10-18T21:36:34.2191390Z ##[group]Run npm install --legacy-peer-deps
+build-ios	Install & Build Web	2026-10-18T21:36:34.2191830Z ^[[36;1mnpm install --legacy-peer-deps^[[0m
+build-ios	Install & Build Web	2026-10-18T21:36:34.2192170Z ^[[36;1mnpm run build^[[0m
+build-ios	Install & Build Web	2026-10-18T21:36:34.2192370Z ^[[36;1mnpx cap sync ios^[[0m
+build-ios	Install & Build Web	2026-10-18T21:36:34.2251060Z shell: /bin/bash -e {0}
+build-ios	Install & Build Web	2026-10-18T21:36:34.2251380Z ##[endgroup]
+build-ios	Install & Build Web	2026-10-18T21:36:34.7683630Z npm warn EBADENGINE Unsupported engine {
+build-ios	Install & Build Web	2026-10-18T21:36:34.7685800Z npm warn EBADENGINE   package: '@capacitor/cli@8.5.3',
+build-ios	Install & Build Web	2026-10-18T21:36:34.7787960Z npm warn EBADENGINE   required: { node: '>=22.0.0' },
+build-ios	Install & Build Web	2026-10-18T21:36:34.7891790Z npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+build-ios	Install & Build Web	2026-10-18T21:36:34.8000520Z npm warn EBADENGINE }
+build-ios	Install & Build Web	2026-10-18T21:36:37.1575980Z npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+build-ios	Install & Build Web	2026-10-18T21:36:37.5414280Z npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+build-ios	Install & Build Web	2026-10-18T21:36:40.4112410Z 
+build-ios	Install & Build Web	2026-10-18T21:36:40.4115420Z added 280 packages, and audited 281 packages in 6s
+build-ios	Install & Build Web	2026-10-18T21:36:40.4115860Z 
+build-ios	Install & Build Web	2026-10-18T21:36:40.4116320Z 46 packages are looking for funding
+build-ios	Install & Build Web	2026-10-18T21:36:40.4116730Z   run `npm fund` for details
+build-ios	Install & Build Web	2026-10-18T21:36:40.4430970Z 
+build-ios	Install & Build Web	2026-10-18T21:36:40.4431990Z 3 moderate severity vulnerabilities
+build-ios	Install & Build Web	2026-10-18T21:36:40.4458710Z 
+build-ios	Install & Build Web	2026-10-18T21:36:40.4460020Z To address all issues (including breaking changes), run:
+build-ios	Install & Build Web	2026-10-18T21:36:40.4460570Z   npm audit fix --force
+build-ios	Install & Build Web	2026-10-18T21:36:40.4460760Z 
+build-ios	Install & Build Web	2026-10-18T21:36:40.4460880Z Run `npm audit` for details.
+build-ios	Install & Build Web	2026-10-18T21:36:40.6528350Z 
+build-ios	Install & Build Web	2026-10-18T21:36:40.6529250Z > react-example@0.0.0 build
+build-ios	Install & Build Web	2026-10-18T21:36:40.6530380Z > vite build
+build-ios	Install & Build Web	2026-10-18T21:36:40.6530740Z 
+build-ios	Install & Build Web	2026-10-18T21:36:41.1054950Z ^[[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+build-ios	Install & Build Web	2026-10-18T21:36:41.1057460Z   - `__dirname` (vite.config.ts:11:27). Use `import.meta.dirname` instead
+build-ios	Install & Build Web	2026-10-18T21:36:41.1060430Z Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.^[[39m
+build-ios	Install & Build Web	2026-10-18T21:36:41.1222230Z ^[[36mvite v8.3.4 ^[[32mbuilding client environment for production...^[[36m^[[39m
+build-ios	Install & Build Web	2026-10-18T21:36:41.1359000Z transforming...
+build-ios	Install & Build Web	2026-10-18T21:36:41.3819510Z ✓ 2086 modules transformed.
+build-ios	Install & Build Web	2026-10-18T21:36:41.4232980Z rendering chunks...
+build-ios	Install & Build Web	2026-10-18T21:36:41.5369980Z computing gzip size...
+build-ios	Install & Build Web	2026-10-18T21:36:41.5478770Z dist/index.html                   1.54 kB │ gzip:   0.69 kB
+build-ios	Install & Build Web	2026-10-18T21:36:41.5488280Z dist/assets/index-c_fViib8.css   48.66 kB │ gzip:   8.95 kB
+build-ios	Install & Build Web	2026-10-18T21:36:41.5489020Z dist/assets/esm-a_mA5F94.js       0.32 kB │ gzip:   0.23 kB
+build-ios	Install & Build Web	2026-10-18T21:36:41.5489690Z dist/assets/web-CaKLCeZ0.js       0.36 kB │ gzip:   0.24 kB
+build-ios	Install & Build Web	2026-10-18T21:36:41.5490120Z dist/assets/web-00a8PeJ1.js       0.84 kB │ gzip:   0.40 kB
+build-ios	Install & Build Web	2026-10-18T21:36:41.5490550Z dist/assets/index-Bk4raJDV.js   557.76 kB │ gzip: 161.74 kB
+build-ios	Install & Build Web	2026-10-18T21:36:41.5490800Z 
+build-ios	Install & Build Web	2026-10-18T21:36:41.5497690Z ^[[33m[plugin builtin:vite-reporter] 
+build-ios	Install & Build Web	2026-10-18T21:36:41.5499420Z (!) Some chunks are larger than 500 kB after minification. Consider:
+build-ios	Install & Build Web	2026-10-18T21:36:41.5501080Z - Using dynamic import() to code-split the application
+build-ios	Install & Build Web	2026-10-18T21:36:41.5503180Z - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+build-ios	Install & Build Web	2026-10-18T21:36:41.5505960Z - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.^[[39m
+build-ios	Install & Build Web	2026-10-18T21:36:41.5539720Z ^[[32m✓ built in 427ms^[[39m
+build-ios	Install & Build Web	2026-10-18T21:36:41.9610800Z ^[[31m[fatal]^[[39m The Capacitor CLI requires NodeJS >=22.0.0
+build-ios	Install & Build Web	2026-10-18T21:36:41.9612230Z         Please install the latest LTS version.
+build-ios	Install & Build Web	2026-10-18T21:36:41.9718700Z ##[error]Process completed with exit code 1.
